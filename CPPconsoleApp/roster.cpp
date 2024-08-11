@@ -109,44 +109,19 @@ void Roster::remove(std::string studentID)
 	//Print error if studentID not found
 	if (!found)
 	{
-		std::cout << "ERROR: STUDENT NOT FOUND" << std::endl;
+		std::cout << "ERROR: STUDENT # " << studentID << " NOT FOUND" << std::endl;
 	}
 }
 
+//Loop through roster, printing student data
 void Roster::printAll()
 {
-	std::cout << "Student List (ID, FIRST NAME, LAST NAME, EMAIL, AGE, DAYS IN COURSE[3], DEGREE PROGRAM) : " << std::endl;
+	std::cout << "Student List: " << std::endl;
 	for (int i = 0; i < maxStudents; i++)
 	{
 		if (classRosterArray[i] != nullptr)
 		{
-			//set column widths and seperate by tabs
-			std::cout << std::left;
-			std::cout << std::setw(5) << classRosterArray[i]->getStudentID() << "\t";
-			std::cout << std::setw(10) << classRosterArray[i]->getFirstName() << "\t";
-			std::cout << std::setw(20) << classRosterArray[i]->getLastName() << "\t";
-			std::cout << std::setw(25) << classRosterArray[i]->getEmailAddress() << "\t";
-			std::cout << std::setw(3) << classRosterArray[i]->getAge() << "\t";
-			std::cout << std::setw(3) << classRosterArray[i]->getDaysInCourse()[0] << "\t";
-			std::cout << std::setw(3) << classRosterArray[i]->getDaysInCourse()[1] << "\t";
-			std::cout << std::setw(3) << classRosterArray[i]->getDaysInCourse()[2] << "\t";
-			if (classRosterArray[i]->getDegreeProgram() == 0)
-			{
-				std::cout << "SECURITY" << std::endl;
-			}
-			else if (classRosterArray[i]->getDegreeProgram() == 1)
-			{
-				std::cout << "NETWORK" << std::endl;
-			}
-			else if (classRosterArray[i]->getDegreeProgram() == 2)
-			{
-				std::cout << "SOFTWARE" << std::endl;
-			}
-			else
-			{
-				std::cout << "NONE" << std::endl;
-			}
-			
+			classRosterArray[i]->print();
 		}
 	}
 }

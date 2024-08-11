@@ -98,13 +98,25 @@ void Student::setDegreeProgram(DegreeProgramEnum degreeProgram)
 //Print
 void Student::print() 
 {
-	std::cout << "Student ID: " << getStudentID() << std::endl;
-	std::cout << "First Name: " << getFirstName() << std::endl;
-	std::cout << "Last Name: " << getLastName() << std::endl;
-	std::cout << "Email Address: " << getEmailAddress() << std::endl;
-	std::cout << "Age: " << getAge() << std::endl;
-	std::cout << "Days in Course: " << getDaysInCourse() << std::endl;
-	std::cout << "Degree Program: " << getDegreeProgram() << std::endl;
+	std::string degreeString;
+	if (degreeProgram == SECURITY)
+	{
+		degreeString = "SECURITY";
+	}
+	else if (degreeProgram == NETWORK)
+	{
+		degreeString = "NETWORK";
+	}
+	else if (degreeProgram == SOFTWARE)
+	{
+		degreeString = "SOFTWARE";
+	}
+	else
+	{
+		degreeString = "ERROR: DEGREE NOT FOUND";
+	}
+
+	std::cout << studentID << "\t" << "First Name: " << getFirstName() << "\t" << "Last Name: " << getLastName() << "\t" << "Age: " << getAge() <<  "\t" << "Days In Course : {" << getDaysInCourse()[0] << " " << getDaysInCourse()[1] << " " << getDaysInCourse()[2] << "}\t" << "Degree Program : " << degreeString << "\t" << std::endl;
 }
 
 void Student::printName()
