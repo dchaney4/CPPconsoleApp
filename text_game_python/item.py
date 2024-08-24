@@ -3,15 +3,12 @@ import random
 
 class Item:
     """Generic item class creation"""
-    def __init__(self, name, description):
-        self.name = name
-        self.description = description
+    def __init__(self):
+        self.name = ''
+        self.description = ''
         self.quantity = 0
-        self.type = type
+        self.type = ''
 
-    def examine_item(self):
-        return self.description
-    
     
 class Club(Item):
     def __init__(self, name, description):
@@ -23,11 +20,13 @@ class Club(Item):
 
 class Bandage(Item):
     """bandage that heals 10 hp"""
-    def __init__(self, name, description):
-        super().__init__(name, description)
+    def __init__(self):
+        super().__init__()
         #healing set to 10
+        self.name = 'Bandage'
         self.healing_amount = 10
         self.type = 'Consumable'
+        self.description = (f"Clean bandages that heal {self.healing_amount} health")
     def use(self, player):
         #check to see if item is in inventory
         if self.quantity <= 0:
@@ -56,8 +55,10 @@ class Bandage(Item):
 
 class Magic_Mushroom(Item):
     """magic mushroom item, damages health and heals hunger"""
-    def __init__(self, name, description):
-        super().__init__(name, description)
+    def __init__(self):
+        super().__init__()
+        self.name = 'Magic Mushroom'
+        self.description = 'Amanita Muscaria- consume with caution'
         self.hunger_amount = 20
         self.damage_amount = 10
         self.type = 'Consumable'
@@ -73,11 +74,11 @@ class Magic_Mushroom(Item):
         #random event- nat 20, you regain max health and hunger; nat 1, instant death
         d20 = dice(20)
         if d20 == 1:
-            print(f"Dying alone wasn't enough. Instead you chose to go out the easy way, high on mushrooms..")
-            print(f"\033[0;31m{player.name} is dead.\033[0m\nGood luck next time.")
+            print_slow(f"Dying alone wasn't enough. Instead you chose to go out the easy way, high on mushrooms..")
+            print_slow(f"\033[0;31m{player.name} is dead.\033[0m\nGood luck next time.")
             exit()
         elif d20 == 20:
-            print(f"Super Mushroom Power-up! You now have max health and hunger.")
+            print_slow(f"Super Mushroom Power-up! You now have max health and hunger.")
             player.hunger = player.max_hunger
             player.health = player.max_health
 

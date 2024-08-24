@@ -15,7 +15,7 @@ class Player:
         self.name = input('>')
         
     def player_status(self):
-        status = f"Name: \033[1;32;40m{self.name}\033[0m Health: \033[1;31;40m{self.health}/{self.max_health}\033[0m Hunger: \033[1;33;40m{self.hunger}/{self.max_hunger}\033[0m"
+        status = f"Name: \033[1;32;40m{self.name}\033[0m Health:     \033[1;31;40m{self.health}/{self.max_health}\033[0m Hunger: \033[1;33;40m{self.hunger}/{self.max_hunger}\033[0m"
         return status
         
     def add_item(self, item, quantity):
@@ -54,7 +54,7 @@ class Player:
     def gain_hunger(self, amount):
 
         if self.hunger == self.max_hunger:
-            print(f"{self.name} is full. 0 hunger gained.")
+            print_slow(f"{self.name} is full. 0 hunger gained.")
         
         elif amount > 1:
             self.hunger = self.hunger + amount
@@ -65,21 +65,57 @@ class Player:
         else:
             print_slow(f"{self.name} gained nothing")
 
-    def use_item(self, item):
-        self.item.use()
+    def use_item(self, item_name):
 
+        #vowel checker
+        vowels = 'aeiou'
+        article = 'an' if item_name[0].lower() in vowels else 'a'
 
-
-
-
-
-
-
-
-    def equip_weapon(self):
-        for every item in self.inventory
+        for item in self.inventory:
+            if item.name.lower() == item_name.lower():
+                item.use(self)
+            else:
+                print_slow(f"You do not have {article} {item_name} in your inventory")
             
-    def attack(self, target):
-        self.equipped_weapon = 
+
+
+
+
+
+
+    def inspect_item(self, item_name):
+
+        #checking for vowels
+        vowels = 'aeiou'
+        article = 'an' if item_name[0].lower() in vowels else 'a'
+        
+        for item in self.inventory:
+            if item.name.lower() == item_name.lower():
+                print_slow(item.description)
+                return
+            else:
+                print(f"You do not have {article} {item_name} in your inventory.")
+
+    def equip_weapon(self, item_name):
+
+        #checking for vowels
+        vowels = 'aeiou'
+        article = 'an' if item_name[0].lower() in vowels else 'a'
+        
+        for item in self.inventory:
+            if item.name.lower() == item_name.lower():
+                if item.type == 'weapon':
+                    
+                    self.equipped_weapon = item
+                    print_slow(f"You have equipped {article} {item.name}.")
+                    return
+                else:
+                    print_slow(f"{item.name} is not a weapon.")
+                    return
+
+        print(f"You do not have {article} {item_name} in your inventory.")
+            
+    #def attack(self, target):
+        #self.equipped_weapon = 
 
   

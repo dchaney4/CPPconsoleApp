@@ -3,10 +3,10 @@ from player import *
 
 class Bear:
     """create bear class"""
-    def __init__(self, name, health, damage):
-        self.name = name
-        self.health = health
-        self.damage = damage
+    def __init__(self):
+        self.name = 'Bear'
+        self.health = 50
+        self.damage = 20
 
     def attack(self, target):
         self.target = target

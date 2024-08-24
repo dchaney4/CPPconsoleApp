@@ -1,6 +1,6 @@
 import sys, time, random
 
-typing_speed = 50
+typing_speed = 60
 def print_slow(t):
     for l in t:
         sys.stdout.write(l)
